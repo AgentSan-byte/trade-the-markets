@@ -1,0 +1,32 @@
+{
+  "name": "trade-the-markets",
+  "description": "AI-powered, agentic, modular crypto trading quant platform. FastAPI backend, React frontend, robust logging, and Gist-based task management.",
+  "modules": [
+    "backend",
+    "frontend",
+    "wallet_integration",
+    "ai_agents",
+    "trading_strategies",
+    "journaling",
+    "dashboard",
+    "gist_management",
+    "docs"
+  ],
+  "mcp": {
+    "context": [
+      "All development tasks, design notes, and requirements are managed as Gists.",
+      "Each Gist is tagged by module and status.",
+      "GistPad MCP context is used to provide AI agents and Copilot with up-to-date project knowledge.",
+      "All code must follow project standards for security, logging, and test coverage."
+    ]
+  },
+  "mcpServers": {
+    "gistpad": {
+      "command": "npx",
+      "args": ["-y", "gistpad-mcp"],
+      "env": {
+        "GITHUB_TOKEN": "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"
+      }
+    }
+  }
+}
