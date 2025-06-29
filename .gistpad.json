@@ -19,14 +19,5 @@
       "GistPad MCP context is used to provide AI agents and Copilot with up-to-date project knowledge.",
       "All code must follow project standards for security, logging, and test coverage."
     ]
-  },
-  "mcpServers": {
-    "gistpad": {
-      "command": "npx",
-      "args": ["-y", "gistpad-mcp"],
-      "env": {
-        "GITHUB_TOKEN": "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"
-      }
-    }
   }
 }
