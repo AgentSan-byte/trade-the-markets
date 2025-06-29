@@ -22,7 +22,7 @@ jobs:
         run: pip install requests
       - name: Run Gist to Copilot context script
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
         run: python scripts/feed_gist_to_copilot.py
       - name: Upload Copilot context artifact
         uses: actions/upload-artifact@v4

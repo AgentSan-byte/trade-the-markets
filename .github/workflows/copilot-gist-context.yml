@@ -22,8 +22,8 @@ jobs:
         run: pip install requests
       - name: Run Gist to Copilot context script
         env:
-          GITHUB_USERNAME: ${{ secrets.GITHUB_USERNAME }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_USERNAME: ${{ secrets.MY_USERNAME }}
+          GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
         run: python scripts/feed_gist_to_copilot.py
       - name: Commit and push Copilot context if changed
         run: |
