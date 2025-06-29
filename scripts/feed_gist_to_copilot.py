@@ -12,21 +12,21 @@ try:
 except ImportError:
     pass  # dotenv is optional for CI, required for local
 
-GITHUB_USERNAME = os.environ.get("GITHUB_USERNAME")
-GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
-GITHUB_REPO = os.environ.get("GITHUB_REPO")  # e.g. "username/repo"
+MY_USERNAME = os.environ.get("MY_USERNAME")
+MY_TOKEN = os.environ.get("MY_TOKEN")
+MY_REPO = os.environ.get("MY_REPO")  # e.g. "username/repo"
 
-if not GITHUB_USERNAME:
-    raise EnvironmentError("GITHUB_USERNAME environment variable not set.")
-if not GITHUB_TOKEN:
-    raise EnvironmentError("GITHUB_TOKEN environment variable not set.")
-if not GITHUB_REPO:
-    raise EnvironmentError("GITHUB_REPO environment variable not set.")
+if not MY_USERNAME:
+    raise EnvironmentError("MY_USERNAME environment variable not set.")
+if not MY_TOKEN:
+    raise EnvironmentError("MY_TOKEN environment variable not set.")
+if not MY_REPO:
+    raise EnvironmentError("MY_REPO environment variable not set.")
 
 def fetch_gists(username: str) -> List[Dict]:
     """Fetch all Gists for the user."""
     url = f"https://api.github.com/users/{username}/gists"
-    headers = {"Authorization": f"token {GITHUB_TOKEN}"}
+    headers = {"Authorization": f"token {MY_TOKEN}"}
     gists = []
     page = 1
     while True:
@@ -42,7 +42,7 @@ def fetch_gists(username: str) -> List[Dict]:
 def fetch_gist_content(gist_id: str) -> str:
     """Fetch the README.md content for a given Gist ID."""
     url = f"https://api.github.com/gists/{gist_id}"
-    headers = {"Authorization": f"token {GITHUB_TOKEN}"}
+    headers = {"Authorization": f"token {MY_TOKEN}"}
     resp = requests.get(url, headers=headers)
     resp.raise_for_status()
     gist = resp.json()
@@ -95,7 +95,7 @@ def update_gist_status_to_complete(gist_id: str, readme: str):
     """Update the Gist README status to complete using GitHub API."""
     new_readme = re.sub(r"(\*\*Status:\*\*\s*)([^\n]+)", r"\1complete", readme, flags=re.IGNORECASE)
     url = f"https://api.github.com/gists/{gist_id}"
-    headers = {"Authorization": f"token {GITHUB_TOKEN}"}
+    headers = {"Authorization": f"token {MY_TOKEN}"}
     data = {"files": {"README.md": {"content": new_readme}}}
     resp = requests.patch(url, headers=headers, json=data)
     resp.raise_for_status()
@@ -111,7 +111,7 @@ def open_pull_request(branch: str, gist_id: str):
     subprocess.run(["gh", "pr", "create", "--fill", "--head", branch, "--title", f"Auto: Complete Gist {gist_id}", "--body", f"Automated PR for Gist {gist_id}"], check=True)
 
 def main():
-    gists = fetch_gists(GITHUB_USERNAME)
+    gists = fetch_gists(MY_USERNAME)
     active_gists = filter_active_gists(gists)
     write_context_file(active_gists)
     print(f"Fetched and wrote {len(active_gists)} active Gists to .copilot-context.md")
