@@ -16,3 +16,48 @@ npm install winstonnpm install winston<!-- Use this file to provide workspace-sp
 - Implement a robust logging framework for all application events (backend and frontend).
 - All logs must be structured and support integration with Splunk or other SIEM tools in the future.
 - Ensure every module and API logs key actions, errors, and security events for audit and traceability.
+
+# Gist Template for All New Tasks/Features
+
+```
+# [Feature/Module Name] ([Backend/Frontend/Other])
+
+**Module:** [backend|frontend|wallet_integration|ai_agents|trading_strategies|journaling|dashboard|gist_management|docs], [other relevant tags]  
+**Status:** [status: pending|in progress|done]  
+**Gist ID:** [auto-generated or paste after creation]
+
+## Description
+[Briefly describe the purpose and scope of this task, feature, or module.]
+
+## Tasks
+- [ ] [Task 1: e.g., Design API contract or UI component]
+- [ ] [Task 2: e.g., Integrate with library or service]
+- [ ] [Task 3: e.g., Implement security, session, or error handling]
+- [ ] [Task 4: e.g., Logging for audit/Splunk]
+- [ ] [Task 5: e.g., Unit tests (90%+ coverage)]
+- [ ] [Task 6: e.g., Documentation]
+
+## Acceptance Criteria
+- [ ] Feature meets all requirements and is secure
+- [ ] All actions are logged and auditable
+- [ ] Code passes static analysis and 90%+ test coverage
+- [ ] Documentation and tests are complete
+- [ ] Gist ID is referenced in code, PRs, and docs
+
+## Collaboration & Traceability
+- [ ] Copilot/AI agents use MCP context to generate code, tests, and docs for this Gist
+- [ ] Developers review, refine, and merge code, updating Gist status as work progresses
+- [ ] Reference this Gist ID in all related commits, PRs, and documentation
+
+## Continuous Improvement
+- [ ] Regularly review this Gist for blockers or improvements
+- [ ] Use AI to suggest refactoring, new features, or documentation updates based on Gist history
+
+---
+
+**References:**  
+- [Link to relevant library, standard, or documentation]
+- [Any additional notes or links]
+```
+
+Always use this template for every new Gist in the GistPad workspace to ensure consistency, traceability, and compliance with project standards.

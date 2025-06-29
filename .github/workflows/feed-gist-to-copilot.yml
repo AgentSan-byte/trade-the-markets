@@ -1,0 +1,31 @@
+name: Feed Gist to Copilot Context
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'scripts/feed_gist_to_copilot.py'
+      - '.github/workflows/feed-gist-to-copilot.yml'
+      - 'README.md'
+
+jobs:
+  feed-gist:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install requests
+        run: pip install requests
+      - name: Run Gist to Copilot context script
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/feed_gist_to_copilot.py
+      - name: Upload Copilot context artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: copilot-context
+          path: .copilot-context.md

@@ -1,0 +1,36 @@
+name: Update Copilot Context from Gists
+
+on:
+  schedule:
+    - cron: '0 * * * *' # Every hour
+  push:
+    paths:
+      - 'scripts/feed_gist_to_copilot.py'
+      - '.github/workflows/copilot-gist-context.yml'
+
+jobs:
+  update-copilot-context:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install requests
+        run: pip install requests
+      - name: Run Gist to Copilot context script
+        env:
+          GITHUB_USERNAME: ${{ secrets.GITHUB_USERNAME }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/feed_gist_to_copilot.py
+      - name: Commit and push Copilot context if changed
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          if [[ `git status --porcelain .copilot-context.md` ]]; then
+            git add .copilot-context.md
+            git commit -m "chore: update Copilot context from Gists [skip ci]"
+            git push
+          fi
