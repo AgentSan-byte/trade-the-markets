@@ -12,6 +12,7 @@ dist
 dist-ssr
 *.local
 .env
+.gistpad.json
 
 # Editor directories and files
 .vscode/*
