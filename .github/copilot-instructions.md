@@ -24,7 +24,7 @@ npm install winstonnpm install winston<!-- Use this file to provide workspace-sp
 
 **Module:** [backend|frontend|wallet_integration|ai_agents|trading_strategies|journaling|dashboard|gist_management|docs], [other relevant tags]  
 **Status:** [status: pending|in progress|done]  
-**Gist ID:** [auto-generated or paste after creation]
+**Gist ID:** [auto-generated]
 
 ## Description
 [Briefly describe the purpose and scope of this task, feature, or module.]

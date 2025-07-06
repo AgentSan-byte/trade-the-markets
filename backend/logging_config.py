@@ -1,12 +1,11 @@
 import logging
 import sys
-from pythonjsonlogger import jsonlogger
 
-# Configure root logger for structured JSON output
+# Configure root logger for structured output (dict-like, not JSON)
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 logHandler = logging.StreamHandler(sys.stdout)
-formatter = jsonlogger.JsonFormatter(
+formatter = logging.Formatter(
     '%(asctime)s %(levelname)s %(name)s %(message)s %(module)s %(funcName)s %(lineno)d'
 )
 logHandler.setFormatter(formatter)
